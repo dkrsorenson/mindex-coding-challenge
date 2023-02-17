@@ -1,2 +1,1 @@
-# mindex-dotnet-challenge
-Mindex .NET Coding Challenge
+# Mindex Coding Challenge
