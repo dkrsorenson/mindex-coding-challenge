@@ -32,6 +32,21 @@ namespace CodeChallenge.Repositories
             return _employeeContext.Employees.SingleOrDefault(e => e.EmployeeId == id);
         }
 
+        /// <summary>
+        /// Get the employee by Id with or without their direct reports
+        /// </summary>
+        /// <param name="id">The employee Id</param>
+        /// <param name="includeDirectReports">Whether or not the direct reports should be included</param>
+        /// <returns>The employee</returns>
+        public Employee GetById(string id, bool includeDirectReports)
+        {
+            // Only get the direct reports if needed
+            if (includeDirectReports)
+                return _employeeContext.Employees.Include(x => x.DirectReports).SingleOrDefault(e => e.EmployeeId == id);
+                
+            return _employeeContext.Employees.SingleOrDefault(e => e.EmployeeId == id);
+        }
+
         public Task SaveAsync()
         {
             return _employeeContext.SaveChangesAsync();

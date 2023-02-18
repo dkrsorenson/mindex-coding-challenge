@@ -32,7 +32,7 @@ namespace CodeChallenge.Services
 
         public Employee GetById(string id)
         {
-            if(!String.IsNullOrEmpty(id))
+            if (!String.IsNullOrEmpty(id))
             {
                 return _employeeRepository.GetById(id);
             }
@@ -40,9 +40,25 @@ namespace CodeChallenge.Services
             return null;
         }
 
+        /// <summary>
+        /// Get the employee by Id with or without their direct reports
+        /// </summary>
+        /// <param name="id">The employee Id</param>
+        /// <param name="includeDirectReports">Whether or not the direct reports should be included</param>
+        /// <returns>The employee</returns>
+        public Employee GetById(string id, bool includeDirectReports)
+        {
+            if(!String.IsNullOrEmpty(id))
+            {
+                return _employeeRepository.GetById(id, includeDirectReports);
+            }
+
+            return null;
+        }
+
         public Employee Replace(Employee originalEmployee, Employee newEmployee)
         {
-            if(originalEmployee != null)
+            if (originalEmployee != null)
             {
                 _employeeRepository.Remove(originalEmployee);
                 if (newEmployee != null)
