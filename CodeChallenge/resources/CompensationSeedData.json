@@ -1,0 +1,14 @@
+﻿[
+  {
+    "compensationId": "c3afafee-db6f-49f9-b250-2d9b269e255f",
+    "employeeId": "16a596ae-edd3-4847-99fe-c4518e82c86f",
+    "salary": "100000.00",
+    "effectiveDate": "2012-04-23T08:00:00Z"
+  },
+  {
+    "compensationId": "dc74af48-1bf1-4b6d-83c0-b4303f1ba5f0",
+    "employeeId": "b7839309-3348-463b-a7e3-5de1c168beb3",
+    "salary": "75000.00",
+    "effectiveDate": "2012-04-23T08:00:00Z"
+  }
+]
