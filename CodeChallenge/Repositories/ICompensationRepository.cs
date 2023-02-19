@@ -1,6 +1,7 @@
-﻿using CodeChallenge.Models;
-using System;
+﻿using System;
 using System.Threading.Tasks;
+
+using CodeChallenge.Models;
 
 namespace CodeChallenge.Repositories
 {
