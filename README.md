@@ -1,3 +1,53 @@
+# Developer Notes
+## What's Been Added
+
+### How to Test
+A Postman collection has been shared to the repository for testing. See the `mindex_coding_challenge.postman_collection.json` file.
+
+### Reporting Structure
+```
+* READ
+    * HTTP Method: GET 
+    * URL: localhost:8080/api/reporting-structure/employee/{id}
+    * RESPONSE: ReportingStructure
+```
+
+### Compensation
+```
+* CREATE
+    * HTTP Method: POST 
+    * URL: localhost:8080/api/compensation
+    * PAYLOAD: Compensation
+    * RESPONSE: Compensation
+* READ
+    * HTTP Method: GET 
+    * URL: localhost:8080/api/compensation/employee/{id}
+    * RESPONSE: Compensation
+```
+The Compensation has a JSON schema of:
+```json
+{
+  "type":"Compensation",
+  "properties": {
+    "compensationId": {
+      "type": "string"
+    },
+    "employeeId": {
+      "type": "string"
+    },
+    "salary": {
+      "type": "number"
+    },
+    "effectiveDate": {
+      "type": "date"
+    },
+    "employee": {
+      "type": "object"
+    }
+  }
+}
+```
+
 # Mindex Coding Challenge
 ## What's Provided
 A simple [.Net 6](https://dotnet.microsoft.com/en-us/download/dotnet/6.0) web application has been created and bootstrapped 
@@ -39,13 +89,13 @@ The Employee has a JSON schema of:
       "type": "string"
     },
     "lastName": {
-          "type": "string"
+      "type": "string"
     },
     "position": {
-          "type": "string"
+      "type": "string"
     },
     "department": {
-          "type": "string"
+      "type": "string"
     },
     "directReports": {
       "type": "array",
