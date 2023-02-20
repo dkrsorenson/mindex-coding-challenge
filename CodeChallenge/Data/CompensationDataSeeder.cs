@@ -22,7 +22,7 @@ namespace CodeChallenge.Data
 
         public async Task Seed()
         {
-            if(!_employeeContext.Compensations.Any())
+            if (!_employeeContext.Compensations.Any())
             {
                 List<Compensation> compensations = LoadCompensations();
                 _employeeContext.Compensations.AddRange(compensations);

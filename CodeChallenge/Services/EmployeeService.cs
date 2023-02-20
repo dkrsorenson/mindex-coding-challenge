@@ -20,7 +20,7 @@ namespace CodeChallenge.Services
 
         public Employee Create(Employee employee)
         {
-            if(employee != null)
+            if (employee != null)
             {
                 _employeeRepository.Add(employee);
                 _employeeRepository.SaveAsync().Wait();
@@ -47,7 +47,7 @@ namespace CodeChallenge.Services
         /// <returns>The employee</returns>
         public Employee GetById(string id, bool includeDirectReports)
         {
-            if(!String.IsNullOrEmpty(id))
+            if (!String.IsNullOrEmpty(id))
             {
                 return _employeeRepository.GetById(id, includeDirectReports);
             }

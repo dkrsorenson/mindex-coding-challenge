@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 
 using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
@@ -24,7 +25,12 @@ namespace CodeChallenge.Repositories
         public Employee Add(Employee employee)
         {
             employee.EmployeeId = Guid.NewGuid().ToString();
+
+            // Fix direct report references before adding
+            FixUpReferences(employee);
+
             _employeeContext.Employees.Add(employee);
+
             return employee;
         }
 
@@ -56,6 +62,32 @@ namespace CodeChallenge.Repositories
         public Employee Remove(Employee employee)
         {
             return _employeeContext.Remove(employee).Entity;
+        }
+
+        /// <summary>
+        /// Fix the direct report references when adding a new employee. 
+        /// This will fix the references when creating new employees with direct reports that already exist in the employees data.
+        /// </summary>
+        /// <param name="employee">The employee being added</param>
+        private void FixUpReferences(Employee employee)
+        {
+            var employeeIdRefMap = from emp in _employeeContext.Employees
+                                   select new { Id = emp.EmployeeId, EmployeeRef = emp };
+
+            if (employee.DirectReports != null)
+            {
+                var referencedEmployees = new List<Employee>(employee.DirectReports.Count);
+                employee.DirectReports.ForEach(report =>
+                {
+                    var referencedEmployee = employeeIdRefMap.FirstOrDefault(e => e.Id == report.EmployeeId);
+                    if (referencedEmployee != null)
+                    {
+                        referencedEmployees.Add(referencedEmployee.EmployeeRef);
+                    }
+                });
+
+                employee.DirectReports = referencedEmployees;
+            }
         }
     }
 }
